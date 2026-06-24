@@ -437,7 +437,7 @@ img {
 /* ===== AWARDS SECTION ===== */
 .awards {
     padding: var(--section-pad) 0;
-    margin-top: 60px;
+    margin: 60px 0 80px;
     background: #0a2a5e;
     position: relative;
     overflow: hidden;
@@ -2251,6 +2251,7 @@ img {
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    position: relative;
 }
 
 .video-wrapper {
@@ -2267,6 +2268,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
 }
 
 /* ===== NAVIGATION ===== */
@@ -2471,6 +2473,7 @@ img {
     padding-top: 140px;
     padding-bottom: 0;
     position: relative;
+    background: var(--bg);
 }
 
 .hero-layout {
@@ -2888,6 +2891,7 @@ img {
 .footer {
     padding: 80px 0 40px;
     border-top: 1px solid var(--border);
+    background: var(--bg);
 }
 
 .footer-grid {
@@ -3102,10 +3106,11 @@ img {
 /* ===== SECTION 6: CTA BANNER ===== */
 .cta-banner {
     padding: 0 0 var(--section-pad);
+    background: var(--bg);
 }
 
 .cta-banner-inner {
-    background: #2A2A2A;
+    background: #0a2a5e;
     border-radius: 24px;
     padding: clamp(56px, 8vw, 96px) clamp(32px, 5vw, 72px);
     text-align: center;
@@ -3116,28 +3121,28 @@ img {
 .cta-banner-inner::before {
     content: '';
     position: absolute;
-    top: -120px;
+    top: 50%;
     right: -120px;
-    width: 360px;
-    height: 360px;
-    background: var(--accent);
-    border-radius: 50%;
-    opacity: 0.08;
-    filter: blur(80px);
+    width: 400px;
+    height: 400px;
+    background: url('asset/armorsilwa-favicon.png') no-repeat center / contain;
+    opacity: 0.06;
+    transform: translateY(-50%);
     pointer-events: none;
+    animation: floatFavicon 23s ease-in-out infinite;
 }
 
 .cta-banner-inner::after {
     content: '';
     position: absolute;
-    bottom: -80px;
-    left: -80px;
-    width: 260px;
-    height: 260px;
+    top: -120px;
+    right: 40%;
+    width: 360px;
+    height: 360px;
     background: var(--accent);
     border-radius: 50%;
     opacity: 0.06;
-    filter: blur(60px);
+    filter: blur(80px);
     pointer-events: none;
 }
 
