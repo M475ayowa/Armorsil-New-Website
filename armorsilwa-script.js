@@ -42,69 +42,7 @@ if (dropdownToggle) {
     });
 }
 
-/* ===== Pricing Toggle ===== */
-const toggleMonthly = document.getElementById('toggleMonthly');
-const toggleYearly  = document.getElementById('toggleYearly');
-const toggleSave    = document.getElementById('toggleSave');
-const priceValues   = document.querySelectorAll('.pricing-value[data-monthly]');
-const billedTexts   = document.querySelectorAll('.pricing-billed[data-monthly]');
 
-function setPlan(plan) {
-    priceValues.forEach(el => {
-        el.textContent = el.dataset[plan];
-    });
-    billedTexts.forEach(el => {
-        el.textContent = el.dataset[plan];
-        el.classList.toggle('yearly-active', plan === 'yearly');
-    });
-
-    if (plan === 'yearly') {
-        toggleYearly.classList.add('active');
-        toggleMonthly.classList.remove('active');
-        toggleSave.classList.add('visible');
-    } else {
-        toggleMonthly.classList.add('active');
-        toggleYearly.classList.remove('active');
-        toggleSave.classList.remove('visible');
-    }
-}
-
-toggleMonthly.addEventListener('click', () => setPlan('monthly'));
-toggleYearly.addEventListener('click',  () => setPlan('yearly'));
-
-/* ===== FAQ Accordion ===== */
-function faqOpen(item) {
-    const answer = item.querySelector('.faq-answer');
-    item.classList.add('open');
-    answer.style.maxHeight = answer.scrollHeight + 'px';
-    item.querySelector('.faq-question').setAttribute('aria-expanded', 'true');
-}
-
-function faqClose(item) {
-    const answer = item.querySelector('.faq-answer');
-    item.classList.remove('open');
-    answer.style.maxHeight = '0';
-    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-}
-
-document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        if (item.classList.contains('open')) {
-            faqClose(item);
-        } else {
-            faqOpen(item);
-        }
-    });
-});
-
-document.getElementById('faqExpandAll').addEventListener('click', () => {
-    document.querySelectorAll('.faq-item').forEach(item => faqOpen(item));
-});
-
-document.getElementById('faqCollapseAll').addEventListener('click', () => {
-    document.querySelectorAll('.faq-item').forEach(item => faqClose(item));
-});
 
 /* ===== Scroll Reveal ===== */
 /* 3-second fallback for iframe previews where IntersectionObserver may not fire */
