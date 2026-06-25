@@ -1693,6 +1693,10 @@ img {
     line-height: 1.7;
 }
 
+.about-values {
+    padding-bottom: 40px;
+}
+
 .about-products {
     background: var(--bg);
 }
