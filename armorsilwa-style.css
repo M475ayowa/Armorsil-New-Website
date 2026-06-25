@@ -2578,27 +2578,13 @@ img {
     color: var(--accent);
 }
 
-.careers-culture-img-placeholder {
+.careers-culture-img {
     width: 100%;
     aspect-ratio: 4 / 3;
     border-radius: 20px;
     border: 1px solid var(--border);
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    color: var(--text-dim);
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.careers-culture-img-placeholder svg {
-    width: 64px;
-    height: 64px;
-    color: var(--text-dim);
-    opacity: 0.4;
+    object-fit: cover;
+    display: block;
 }
 
 .careers-apply {
