@@ -1416,7 +1416,7 @@ img {
 }
 
 .about-text h2 {
-    font-size: clamp(32px, 4vw, 48px);
+    font-size: clamp(26px, 3.2vw, 38px);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: 0.02em;
