@@ -2870,23 +2870,13 @@ img {
     border-color: var(--accent);
 }
 
-.onboard-module-header {
+.onboard-module-top {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px 24px;
-    cursor: pointer;
-    border-left: 3px solid var(--border);
-    transition: border-color 0.3s ease;
-    gap: 16px;
-}
-
-.onboard-module-header:hover {
+    gap: 12px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
     background: var(--bg);
-}
-
-.onboard-module-info {
-    flex: 1;
 }
 
 .onboard-module-badge {
@@ -2899,32 +2889,13 @@ img {
     background: rgba(229, 36, 43, 0.08);
     padding: 4px 10px;
     border-radius: 6px;
-    margin-bottom: 6px;
-}
-
-.onboard-module-info h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 4px;
-}
-
-.onboard-module-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-}
-
-.onboard-module-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
 }
 
 .onboard-module-duration {
     font-size: 13px;
     color: var(--text-dim);
     font-weight: 500;
+    margin-left: auto;
 }
 
 .onboard-module-status {
@@ -2932,24 +2903,58 @@ img {
     font-weight: 600;
     color: var(--text-dim);
     padding: 4px 12px;
-    background: var(--bg);
+    background: var(--white);
+    border: 1px solid var(--border);
     border-radius: 50px;
     white-space: nowrap;
 }
 
 .onboard-module-body {
-    display: none;
-    padding: 0 24px 24px;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-
-.onboard-module.active .onboard-module-body {
     display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0;
 }
 
-.onboard-module.active .onboard-module-header {
-    border-left-color: var(--brand-blue);
+.onboard-module-player {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.onboard-module-player video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    min-height: 240px;
+}
+
+.onboard-module-player.playing {
+    transform: scale(1.04);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 8px;
+    z-index: 2;
+}
+
+.onboard-module-content {
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.onboard-module-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+
+.onboard-module-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
 }
 
 .onboard-module-player video {
@@ -3208,9 +3213,8 @@ img {
         font-size: clamp(36px, 10vw, 48px);
     }
 
-    .onboard-module-header {
-        flex-direction: column;
-        align-items: flex-start;
+    .onboard-module-content {
+        padding: 20px;
     }
 
     .onboard-progress-stats {
