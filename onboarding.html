@@ -792,17 +792,20 @@
         function markComplete(btn) {
             const module = btn.closest('.onboard-module');
             const status = module.querySelector('.onboard-module-status');
+            const practice = module.querySelector('.onboard-practice');
 
             if (status.textContent === 'Completed') {
                 status.textContent = 'Not Started';
                 status.style.color = '';
                 status.style.borderColor = '';
                 btn.textContent = 'Mark as Completed';
+                if (practice) practice.classList.remove('open');
             } else {
                 status.textContent = 'Completed';
                 status.style.color = 'var(--accent)';
                 status.style.borderColor = 'var(--accent)';
                 btn.textContent = 'Undo';
+                if (practice) practice.classList.add('open');
             }
             updateProgress();
         }

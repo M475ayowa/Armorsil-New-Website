@@ -3239,11 +3239,22 @@ img {
 
 /* ===== ONBOARD PRACTICE QUIZ ===== */
 .onboard-practice {
-    margin-top: 28px;
-    padding: 24px 28px;
+    max-height: 0;
+    padding: 0 28px;
+    margin-top: 0;
     background: #f4f6fb;
     border: 1px solid #e4e8f0;
     border-radius: 14px;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.55s ease, padding 0.55s ease, margin-top 0.55s ease, opacity 0.4s ease 0.1s;
+}
+
+.onboard-practice.open {
+    max-height: 3000px;
+    padding: 24px 28px;
+    margin-top: 28px;
+    opacity: 1;
 }
 
 .onboard-practice-header {
