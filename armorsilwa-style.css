@@ -2782,6 +2782,7 @@ img {
 
 .onboard-progress {
     padding: 60px 0 0;
+    background: var(--white);
 }
 
 .onboard-progress-card {
@@ -2847,6 +2848,7 @@ img {
 
 .onboard-curriculum {
     padding: 60px 0 var(--section-pad);
+    background: var(--bg);
 }
 
 .onboard-modules {
@@ -3003,6 +3005,7 @@ img {
 
 .onboard-section {
     padding: var(--section-pad) 0;
+    background: var(--white);
 }
 
 .onboard-section-alt {
