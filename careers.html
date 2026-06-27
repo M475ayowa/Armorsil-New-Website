@@ -427,7 +427,9 @@
     <script>
         function toggleCareer(header) {
             const card = header.closest('.careers-list-card');
-            card.classList.toggle('active');
+            const isActive = card.classList.contains('active');
+            document.querySelectorAll('.careers-list-card.active').forEach(c => c.classList.remove('active'));
+            if (!isActive) card.classList.add('active');
         }
     </script>
 
