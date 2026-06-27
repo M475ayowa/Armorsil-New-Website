@@ -322,6 +322,11 @@
     margin-top: 48px;
 }
 
+.events-grid + .events-grid {
+    padding-top: 48px;
+    border-top: 2px solid var(--brand-blue);
+}
+
 .events-info {
     display: flex;
     flex-direction: column;
