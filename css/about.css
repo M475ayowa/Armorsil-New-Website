@@ -592,11 +592,6 @@
         grid-template-columns: 1fr;
     }
 
-    .director-img {
-        width: 130px;
-        height: 130px;
-    }
-
     .achievement-badge {
         width: 48px;
         height: 48px;
@@ -604,5 +599,115 @@
 
     .offices-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ===== PARTNER MARQUEE ===== */
+.partner-marquee {
+    margin-top: 48px;
+    padding: 40px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.partner-marquee::before,
+.partner-marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.partner-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--surface), transparent);
+}
+
+.partner-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--surface), transparent);
+}
+
+.partner-marquee-label {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+}
+
+.partner-marquee-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: marqueeScroll 30s linear infinite;
+}
+
+.partner-marquee-group {
+    display: flex;
+    gap: 20px;
+}
+
+.partner-logo-card {
+    flex-shrink: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-width: 220px;
+    height: 150px;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.partner-logo-img-wrap {
+    width: 160px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border-radius: 8px;
+}
+
+.partner-logo-img {
+    max-height: 130px;
+    max-width: 140px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.partner-logo-card span {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.partner-logo-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(229, 36, 43, 0.12);
+    transform: translateY(-2px);
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .partner-marquee-track {
+        animation: none;
     }
 }
