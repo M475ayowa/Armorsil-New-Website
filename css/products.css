@@ -170,7 +170,7 @@
     right: -240px;
     width: 600px;
     height: 600px;
-    background: url('asset/armorsilwa-favicon.png') no-repeat center / contain;
+    background: url('../asset/armorsilwa-favicon.png') no-repeat center / contain;
     opacity: 1;
     transform: translateY(-50%);
     pointer-events: none;

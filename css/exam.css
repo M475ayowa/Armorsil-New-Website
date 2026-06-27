@@ -10,7 +10,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('asset/armorsilwa-favicon.png');
+    background-image: url('../asset/armorsilwa-favicon.png');
     background-size: 140px;
     background-repeat: repeat;
     opacity: 0.04;

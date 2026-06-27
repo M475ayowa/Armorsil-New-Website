@@ -57,7 +57,7 @@
     right: -240px;
     width: 790px;
     height: 790px;
-    background: url('asset/armorsilwa-favicon.png') no-repeat center / contain;
+    background: url('../asset/armorsilwa-favicon.png') no-repeat center / contain;
     opacity: 1;
     transform: translateY(-50%);
     pointer-events: none;
@@ -1263,7 +1263,7 @@
     right: -120px;
     width: 400px;
     height: 400px;
-    background: url('asset/armorsilwa-favicon.png') no-repeat center / contain;
+    background: url('../asset/armorsilwa-favicon.png') no-repeat center / contain;
     opacity: 0.06;
     transform: translateY(-50%);
     pointer-events: none;
