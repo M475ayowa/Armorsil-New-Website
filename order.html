@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place an Order — Armorsil West Africa</title>
+    <link rel="icon" type="image/png" href="asset/armorsilwa-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/order.css">
+    <script>if(window.innerWidth<900&&!location.pathname.includes('mobile.html'))location.href='mobile.html';</script>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Armorsil Home">
+                <img src="asset/armorsilwa-logo.png" alt="Armorsil Logo" class="nav-logo-img">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="products.html">Products <span class="dropdown-arrow">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="products.html#waterproofing-admixtures">Waterproofing Admixtures</a></li>
+                        <li><a href="products.html#concrete-admixtures">Concrete Admixtures</a></li>
+                        <li><a href="products.html#coating-membrane">Waterproof Coating & Membrane</a></li>
+                        <li><a href="products.html#curing-agent">Curing Agent</a></li>
+                        <li><a href="products.html#release-agent">Release Agent</a></li>
+                        <li><a href="products.html#flooring">Flooring</a></li>
+                        <li><a href="products.html#tiling-solution">Tiling Solution</a></li>
+                        <li><a href="products.html#concrete-repair">Concrete Repair & Bonding Agent</a></li>
+                        <li><a href="products.html#expansion-joint">Expansion Joint Sealant</a></li>
+                        <li><a href="products.html#structural-grout">Structural Grout</a></li>
+                        <li><a href="products.html#thermal-insulation">Thermal Insulation</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="order.html" class="active">Order</a></li>
+                <li><a href="blog.html">Our Blog</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="about.html#offices" class="nav-contact">Contact Us</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== ORDER HERO ===== -->
+    <section class="order-hero">
+        <div class="container">
+            <div class="order-hero-content">
+                <p class="order-hero-tag">Get a Quote & Place Your Order</p>
+                <h1>Place Your Order</h1>
+                <p>Review your selected product, specify quantity and Finder's Fee, then tell us where and when to deliver.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SELECTED PRODUCT ===== -->
+    <section class="order-section" id="selected-product-section">
+        <div class="container">
+            <div class="order-section-header reveal">
+                <p class="section-tag">Step 1</p>
+                <h2>Selected Product</h2>
+                <p>Review your product and specify the quantity and Finder's Fee.</p>
+            </div>
+
+            <!-- No product selected fallback -->
+            <div class="order-empty reveal" id="order-empty">
+                <div class="order-empty-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                </div>
+                <h3>No Product Selected</h3>
+                <p>Please browse our products and click <strong>Order Now</strong> on the product you need.</p>
+                <a href="products.html" class="btn-acid">Browse Products</a>
+            </div>
+
+            <!-- Selected product card -->
+            <div class="order-product-card reveal" id="order-product-card" style="display:none">
+                <div class="order-product-card-img">
+                    <img id="order-product-img" src="" alt="">
+                </div>
+                <div class="order-product-card-body">
+                    <h3 id="order-product-name" class="order-product-title"></h3>
+                    <div class="order-product-price" id="order-product-price"></div>
+
+                    <div class="order-product-fields">
+                        <div class="order-product-field">
+                            <label>Quantity <span class="required">*</span></label>
+                            <input type="number" id="order-qty" class="order-input" placeholder="0" min="1" value="1" oninput="updateCalculation()">
+                        </div>
+                        <div class="order-product-field">
+                            <label>Finder's Fee per Unit (max &#8358;500)</label>
+                            <div class="fee-wrapper">
+                                <span class="fee-currency">&#8358;</span>
+                                <input type="number" id="order-fee" class="order-input fee" placeholder="0" min="0" max="500" value="0" oninput="updateCalculation()">
+                            </div>
+                            <span class="fee-max">Max &#8358;500 per unit</span>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Summary -->
+                    <div class="order-pricing" id="order-pricing">
+                        <div class="order-pricing-row">
+                            <span>Unit Price</span>
+                            <span id="pricing-unit-price">&#8358;0</span>
+                        </div>
+                        <div class="order-pricing-row">
+                            <span>Quantity</span>
+                            <span id="pricing-qty">0</span>
+                        </div>
+                        <div class="order-pricing-row order-pricing-sub">
+                            <span>Product Subtotal</span>
+                            <span id="pricing-subtotal">&#8358;0</span>
+                        </div>
+                        <div class="order-pricing-row">
+                            <span>Finder's Fee per Unit</span>
+                            <span id="pricing-fee-unit">&#8358;0</span>
+                        </div>
+                        <div class="order-pricing-row">
+                            <span>Total Finder's Fee</span>
+                            <span id="pricing-fee-total">&#8358;0</span>
+                        </div>
+                        <div class="order-pricing-divider"></div>
+                        <div class="order-pricing-row order-pricing-grand">
+                            <span>Grand Total</span>
+                            <span id="pricing-grand-total">&#8358;0</span>
+                        </div>
+                    </div>
+
+                    <div class="finder-banner" id="order-finder-banner">
+                        <div class="finder-banner-icon">&#9733;</div>
+                        <div>
+                            <h3>Finder's Fee Programme</h3>
+                            <p>Are you an engineer or advocate recommending Armorsil products? You can nominate a per-unit Finder's Fee (up to &#8358;500 max) as your referral perk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAKE PAYMENT ===== -->
+    <section class="order-section" id="payment-section" style="display:none">
+        <div class="container">
+            <div class="order-section-header reveal">
+                <p class="section-tag">Step 2</p>
+                <h2>Make Payment</h2>
+                <p>Choose how you'd like to pay. Your order will be processed after payment confirmation.</p>
+            </div>
+
+            <div class="payment-methods reveal">
+                <!-- Pay Online -->
+                <div class="payment-method">
+                    <div class="payment-method-header">
+                        <div class="payment-method-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        </div>
+                        <div>
+                            <h3>Pay Online (Card &amp; Bank Transfer)</h3>
+                            <p>Pay securely with your card or via bank transfer through our payment gateway.</p>
+                        </div>
+                    </div>
+                    <div class="payment-amount">
+                        <span class="payment-amount-label">Total Due</span>
+                        <span class="payment-amount-value" id="payment-amount">&#8358;0</span>
+                    </div>
+                    <button class="btn-acid" id="pay-now-btn" onclick="payWithPaystack()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        Pay &#8358;<span id="pay-now-amount">0</span> Now
+                    </button>
+                    <p class="payment-method-note">Powered by Paystack. All major cards accepted.</p>
+                </div>
+
+                <!-- Bank Transfer -->
+                <div class="payment-method">
+                    <div class="payment-method-header">
+                        <div class="payment-method-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        </div>
+                        <div>
+                            <h3>Bank Transfer</h3>
+                            <p>Transfer directly to our company account. Use your order reference as the deposit narrative.</p>
+                        </div>
+                    </div>
+                    <div class="bank-details">
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Bank</span>
+                            <span class="bank-detail-value">Access Bank</span>
+                        </div>
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Account Name</span>
+                            <span class="bank-detail-value">Armorsil West Africa Limited</span>
+                        </div>
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Account Number</span>
+                            <span class="bank-detail-value bank-acct">1234 5678 9012</span>
+                        </div>
+                        <div class="bank-detail-row">
+                            <span class="bank-detail-label">Amount</span>
+                            <span class="bank-detail-value bank-acct" id="bank-amount">&#8358;0</span>
+                        </div>
+                    </div>
+                    <p class="payment-method-note">Send your payment receipt to <a href="mailto:sales@armorsilwa.com">sales@armorsilwa.com</a> after transfer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DELIVERY DETAILS ===== -->
+    <section class="order-section" id="delivery-section" style="display:none">
+        <div class="container">
+            <div class="order-section-header reveal">
+                <p class="section-tag">Step 3</p>
+                <h2>Delivery Details</h2>
+                <p>Tell us where and when you need your order delivered.</p>
+            </div>
+
+            <div class="order-form reveal">
+                <div class="order-form-grid">
+                    <div class="order-form-group full">
+                        <label>Full Name <span class="required">*</span></label>
+                        <input type="text" id="delivery-name" placeholder="Your full name" required>
+                    </div>
+                    <div class="order-form-group">
+                        <label>Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="delivery-phone" placeholder="e.g. +234 809 942 7527" required>
+                    </div>
+                    <div class="order-form-group">
+                        <label>Email Address <span class="required">*</span></label>
+                        <input type="email" id="delivery-email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="order-form-group full">
+                        <label>Company / Organization</label>
+                        <input type="text" id="delivery-company" placeholder="Optional">
+                    </div>
+                    <div class="order-form-group full">
+                        <label>Delivery Address <span class="required">*</span></label>
+                        <textarea id="delivery-address" placeholder="Street address, city, state, country" required></textarea>
+                    </div>
+                    <div class="order-form-group">
+                        <label>Preferred Delivery Date <span class="required">*</span></label>
+                        <input type="date" id="delivery-date" required>
+                    </div>
+                    <div class="order-form-group">
+                        <label>Preferred Delivery Time</label>
+                        <input type="time" id="delivery-time">
+                    </div>
+                    <div class="order-form-group full">
+                        <label>Additional Notes</label>
+                        <textarea id="delivery-notes" placeholder="Any special instructions, delivery notes, or requests..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REFERRER & SUBMIT ===== -->
+    <section class="order-section" id="referrer-submit-section" style="display:none">
+        <div class="container">
+            <div class="order-section-header reveal">
+                <p class="section-tag">Step 4</p>
+                <h2>Referrer Details &amp; Submit</h2>
+                <p>If you nominated a Finder's Fee, provide your referrer details. Then review and submit your order.</p>
+            </div>
+
+            <div class="referrer-submit-grid reveal">
+                <div class="referrer-submit-col">
+                    <h3 class="referrer-submit-title">Referrer Details (Optional)</h3>
+                    <div class="order-form">
+                        <div class="order-form-grid">
+                            <div class="order-form-group full">
+                                <label>Referrer Full Name</label>
+                                <input type="text" id="referrer-name" placeholder="Your name as the referring engineer / advocate">
+                            </div>
+                            <div class="order-form-group">
+                                <label>Referrer Phone</label>
+                                <input type="tel" id="referrer-phone" placeholder="Phone number">
+                            </div>
+                            <div class="order-form-group">
+                                <label>Referrer Email</label>
+                                <input type="email" id="referrer-email" placeholder="Email address">
+                            </div>
+                            <div class="order-form-group full">
+                                <label>Referrer Company / Firm</label>
+                                <input type="text" id="referrer-company" placeholder="Company name (optional)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="referrer-submit-col">
+                    <h3 class="referrer-submit-title">Review &amp; Submit</h3>
+                    <p class="referrer-submit-desc">Please review your order before submitting. We will get back to you within 24 hours with a formal quotation.</p>
+                    <div class="order-actions">
+                        <button class="btn-acid" onclick="submitOrder()">Submit Order Request</button>
+                        <a href="products.html" class="btn-ghost">Browse More Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="nav-logo" aria-label="Armorsil Home">
+                        <img src="asset/armorsilwa-logo.png" alt="Armorsil Logo" class="nav-logo-img">
+                    </a>
+                    <p class="footer-brand-desc">West Africa's foremost specialty building materials and construction chemicals company — delivering innovative, sustainable solutions for the most demanding projects across the continent.</p>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="order.html">Order</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html#waterproofing-admixtures">Waterproofing</a></li>
+                        <li><a href="products.html#coating-membrane">Coating & Membrane</a></li>
+                        <li><a href="products.html#flooring">Flooring Systems</a></li>
+                        <li><a href="products.html#tiling-solution">Tiling Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+23408099427527">(234) 08099427527</a></li>
+                        <li><a href="mailto:sales@armorsilwa.com">sales@armorsilwa.com</a></li>
+                        <li><a href="#">31a Emina Crescent, Ikeja, Lagos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 Armorsil West Africa. All rights reserved.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="armorsilwa-script.js"></script>
+    <script>
+        // Product prices (dummy) — min ₦20,000 per product
+        const productPrices = {
+            "Armorkrystal 400": 45000, "Armorkrystal 500": 52000, "Armorkrystal 600": 58000, "Armorkrystal 700": 65000,
+            "Aquaseal 100": 38000, "Aquaseal 200": 42000, "Aquaseal 300": 48000,
+            "Hydroplast 50": 22000, "Hydroplast 60": 25000, "Hydroplast 100": 28000, "Hydroplast 200": 32000,
+            "Hydroplast 200D": 35000, "Hydroplast 200R": 35000, "Hydroplast 400": 38000, "Hydroplast 600": 42000,
+            "Armorcast 200": 55000, "Armor Air Entrainment": 28000, "Armorcel 200": 35000, "Armorcel 300": 40000,
+            "Armor Retarder 100": 25000, "Armor Retarder 200": 28000, "Armorcoat 1K": 45000, "Armorcoat 2K": 52000,
+            "Armorcoat 1C": 38000, "Armorseal 220": 42000, "Armorseal 250": 48000, "Armortrans": 35000,
+            "Armorseal 700": 55000, "Armorseal 200": 40000,
+            "Armorcure 100": 25000, "Armorcure 200": 28000, "Armorcure 300": 32000,
+            "Armor Release Agent": 22000,
+            "Armortop HD200": 65000, "Armortop 300HD": 72000, "Armorflo 500HD": 85000, "Armorflo 600 MS": 78000,
+            "Armorflo 600 SL": 75000, "Armorflo 200": 55000, "Armorflo 300": 60000, "Armorcrete 2000": 48000, "Armorseal 540": 42000,
+            "Armorsealer 50": 25000, "Armorsealer 60": 28000, "Armorfix 108": 22000, "Armorfix 109": 25000,
+            "Armorfix 109 Flex": 28000, "Armorfix 110": 30000, "Armorfix 112": 32000, "Armorfix 113": 28000,
+            "Armorfix 115": 35000, "Armorjoint Pro 100": 38000, "Armorjoint Pro 200": 42000,
+            "Armorpatch 100": 25000, "Armorpatch 200": 28000, "Armorpatch 300": 32000,
+            "Armorlatex": 30000, "Armor Superlatex": 35000, "Armor Water Stop": 20000, "Armorkrystal Plug": 35000,
+            "Armor expanseal 100": 38000, "Armor PU Sealant": 42000, "Armorexpanseal 200": 45000,
+            "Armorgrout 50": 35000, "Armorgrout 60": 38000, "Armorgrout 70": 42000, "Armorgrout 100": 48000, "Armorgrout 110": 52000,
+            "Armor Insulator 100": 40000, "Armor Insulator 200": 45000, "Armor Deco 100": 35000
+        };
+
+        function formatCurrency(amount) {
+            return '\u20A6' + Number(amount).toLocaleString('en-US');
+        }
+
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function updateCalculation() {
+            const productName = document.getElementById('order-product-name').textContent;
+            const price = productPrices[productName] || 0;
+            const qty = parseInt(document.getElementById('order-qty').value) || 0;
+            const fee = parseInt(document.getElementById('order-fee').value) || 0;
+
+            const subtotal = price * qty;
+            const feeTotal = fee * qty;
+            const grandTotal = subtotal + feeTotal;
+
+            document.getElementById('pricing-unit-price').textContent = formatCurrency(price);
+            document.getElementById('pricing-qty').textContent = qty;
+            document.getElementById('pricing-subtotal').textContent = formatCurrency(subtotal);
+            document.getElementById('pricing-fee-unit').textContent = formatCurrency(fee);
+            document.getElementById('pricing-fee-total').textContent = formatCurrency(feeTotal);
+            document.getElementById('pricing-grand-total').textContent = formatCurrency(grandTotal);
+
+            document.getElementById('payment-amount').textContent = formatCurrency(grandTotal);
+            document.getElementById('pay-now-amount').textContent = grandTotal.toLocaleString('en-US');
+            document.getElementById('bank-amount').textContent = formatCurrency(grandTotal);
+        }
+
+        function initOrderPage() {
+            const productName = getQueryParam('product');
+            const productImage = getQueryParam('image');
+
+            const emptyEl = document.getElementById('order-empty');
+            const cardEl = document.getElementById('order-product-card');
+            const deliverySection = document.getElementById('delivery-section');
+            const paymentSection = document.getElementById('payment-section');
+            const referrerSubmitSection = document.getElementById('referrer-submit-section');
+
+            if (!productName) {
+                emptyEl.style.display = 'block';
+                cardEl.style.display = 'none';
+                deliverySection.style.display = 'none';
+                paymentSection.style.display = 'none';
+                referrerSubmitSection.style.display = 'none';
+                return;
+            }
+
+            emptyEl.style.display = 'none';
+            cardEl.style.display = 'flex';
+            deliverySection.style.display = 'block';
+            paymentSection.style.display = 'block';
+            referrerSubmitSection.style.display = 'block';
+
+            document.getElementById('order-product-name').textContent = productName;
+            document.getElementById('order-product-img').src = productImage || '';
+            document.getElementById('order-product-img').alt = productName;
+
+            const price = productPrices[productName];
+            const priceEl = document.getElementById('order-product-price');
+            if (price) {
+                priceEl.textContent = formatCurrency(price) + ' per unit';
+                priceEl.style.display = 'block';
+            }
+
+            updateCalculation();
+        }
+
+        function payWithPaystack() {
+            const email = document.getElementById('delivery-email').value;
+            if (!email) {
+                alert('Please enter your email in the Delivery Details section first.');
+                document.getElementById('delivery-email').focus();
+                return;
+            }
+            const productName = document.getElementById('order-product-name').textContent;
+            const qty = parseInt(document.getElementById('order-qty').value) || 0;
+            const fee = parseInt(document.getElementById('order-fee').value) || 0;
+            const price = productPrices[productName] || 0;
+            const subtotal = price * qty;
+            const feeTotal = fee * qty;
+            const grandTotal = subtotal + feeTotal;
+            const amountInKobo = grandTotal * 100;
+
+            const handler = PaystackPop.setup({
+                key: 'pk_test_5a5e7d9f4c3b2a1e0d8f6c7b9a2e4d0f1c3a5b7',
+                email: email,
+                amount: amountInKobo,
+                currency: 'NGN',
+                ref: 'ARM-' + Date.now() + '-' + Math.floor(Math.random() * 1000000),
+                metadata: {
+                    custom_fields: [
+                        {
+                            display_name: "Product",
+                            variable_name: "product",
+                            value: productName
+                        },
+                        {
+                            display_name: "Quantity",
+                            variable_name: "quantity",
+                            value: qty
+                        }
+                    ]
+                },
+                callback: function(response) {
+                    document.getElementById('pay-now-btn').textContent = 'Payment Successful';
+                    document.getElementById('pay-now-btn').style.background = '#28a745';
+                    document.getElementById('pay-now-btn').disabled = true;
+                    alert('Payment successful! Reference: ' + response.reference + '\nPlease proceed to submit your order.');
+                },
+                onClose: function() {
+                    // User closed the popup
+                }
+            });
+            handler.openIframe();
+        }
+
+        function submitOrder() {
+            const productName = document.getElementById('order-product-name').textContent;
+            const qty = parseInt(document.getElementById('order-qty').value) || 0;
+            const fee = parseInt(document.getElementById('order-fee').value) || 0;
+            const price = productPrices[productName] || 0;
+            const subtotal = price * qty;
+            const feeTotal = fee * qty;
+            const grandTotal = subtotal + feeTotal;
+
+            const name = document.getElementById('delivery-name').value;
+            const phone = document.getElementById('delivery-phone').value;
+            const email = document.getElementById('delivery-email').value;
+            const company = document.getElementById('delivery-company').value;
+            const address = document.getElementById('delivery-address').value;
+            const date = document.getElementById('delivery-date').value;
+            const time = document.getElementById('delivery-time').value;
+            const notes = document.getElementById('delivery-notes').value;
+            const refName = document.getElementById('referrer-name').value;
+            const refPhone = document.getElementById('referrer-phone').value;
+            const refEmail = document.getElementById('referrer-email').value;
+            const refCompany = document.getElementById('referrer-company').value;
+
+            if (!name || !phone || !email || !address || !date) {
+                alert('Please fill in all required delivery fields.');
+                return;
+            }
+            if (qty < 1) {
+                alert('Please enter a quantity of at least 1.');
+                return;
+            }
+
+            let subject = `Order Request: ${productName} (Qty: ${qty} — ${formatCurrency(grandTotal)})`;
+            let body = `PRODUCT ORDER REQUEST\n`;
+            body += `========================\n\n`;
+            body += `Product: ${productName}\n`;
+            body += `Unit Price: ${formatCurrency(price)}\n`;
+            body += `Quantity: ${qty}\n`;
+            body += `Product Subtotal: ${formatCurrency(subtotal)}\n`;
+            body += `Finder's Fee per Unit: ${formatCurrency(fee)}\n`;
+            body += `Total Finder's Fee: ${formatCurrency(feeTotal)}\n`;
+            body += `Grand Total: ${formatCurrency(grandTotal)}\n`;
+            body += `Payment: Pay on delivery / Bank Transfer\n\n`;
+            body += `--- DELIVERY DETAILS ---\n`;
+            body += `Name: ${name}\n`;
+            body += `Phone: ${phone}\n`;
+            body += `Email: ${email}\n`;
+            if (company) body += `Company: ${company}\n`;
+            body += `Address: ${address}\n`;
+            body += `Delivery Date: ${date}\n`;
+            if (time) body += `Delivery Time: ${time}\n`;
+            if (notes) body += `Notes: ${notes}\n\n`;
+            body += `--- REFERRER DETAILS ---\n`;
+            if (refName) body += `Referrer Name: ${refName}\n`;
+            if (refPhone) body += `Referrer Phone: ${refPhone}\n`;
+            if (refEmail) body += `Referrer Email: ${refEmail}\n`;
+            if (refCompany) body += `Referrer Company: ${refCompany}\n`;
+
+            window.location.href = 'order-confirmation.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', initOrderPage);
+    </script>
+
+</body>
+</html>
